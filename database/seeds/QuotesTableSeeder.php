@@ -36,6 +36,26 @@ class QuotesTableSeeder extends Seeder
                 'quote' => 'Já peguei piores',
                 'author' => 'Desconhecido',
             ],
+            [
+                'quote' => 'Teyy',
+                'author' => 'Vani',
+            ],
+            [
+                'quote' => 'To na magras',
+                'author' => 'Gregory Bolsoni',
+            ],
+            [
+                'quote' => 'Não, não não! Não e bem assim!',
+                'author' => 'Julio Spido',
+            ],
+            [
+                'quote' => 'Bussines Pussy™',
+                'author' => 'Gabriel Conte',
+            ],
+            [
+                'quote' => 'Várias ideias, poucos dinheiro',
+                'author' => 'Arthur Corso',
+            ],
         ]);
     }
 }

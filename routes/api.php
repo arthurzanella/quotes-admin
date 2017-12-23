@@ -17,7 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', 'Api\AuthenticateController@authenticate');
-Route::group(['middleware' => 'jwt.auth'], function(){
-	Route::get('quote', 'Api\QuotesController@random');
-});
+//Route::post('login', 'Api\AuthenticateController@authenticate');
+//Route::group(['middleware' => 'jwt.auth'], function(){
+//	Route::get('quote', 'Api\QuotesController@random');
+//});
+
+//dont want token my bro
+Route::get('quote', 'Api\QuotesController@random');

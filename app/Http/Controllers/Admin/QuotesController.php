@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Quote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class QuotesController extends Controller
@@ -29,6 +30,7 @@ class QuotesController extends Controller
             'author' => 'max:255',
         ]);
         $store = new Quote;
+        $store->user_id = Auth::id();
         $store->quote = $request->quote;
         $store->author = $request->author;
         $store->save();
@@ -46,6 +48,9 @@ class QuotesController extends Controller
     public function edit($id)
     {
         $data = Quote::find($id);
+        if ($data['user_id'] != Auth::id()) {
+            return redirect()->route('admin.quotes.index')->with(['warning' => 'Você não pode editar a quote de outro usuário!']);
+        }
         return view('admin.quotes.edit', ['quote' => $data]);
     }
 
@@ -57,6 +62,9 @@ class QuotesController extends Controller
             'author' => 'max:255',
         ]);
         $update = Quote::find($id);
+        if ($update['user_id'] != Auth::id()) {
+            return redirect()->route('admin.quotes.index')->with(['warning' => 'Você não pode atualizar a quote de outro usuário!']);
+        }
         $update->quote = $request->quote;
         $update->author = $request->author;
         $update->save();
@@ -67,6 +75,9 @@ class QuotesController extends Controller
     public function destroy(Quote $quote)
     {
         $destroy = Quote::findOrFail($quote->id);
+        if ($destroy['user_id'] != Auth::id()) {
+            return redirect()->route('admin.quotes.index')->with(['warning' => 'Você não pode excluir a quote de outro usuário!']);
+        }
         $destroy->delete();
         return redirect()->route('admin.quotes.index')->with('status', 'success-deleted');
     }

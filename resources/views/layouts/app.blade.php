@@ -121,6 +121,11 @@
                             </div>
                         @endif
                     @endif
+                    @if (Session::has('warning'))
+                        <div class="alert alert-warning">
+                            {{ session::get('warning') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

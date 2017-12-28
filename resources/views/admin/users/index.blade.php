@@ -19,43 +19,45 @@
                         <br/>
                         <div class="row">
                             <div class="col-md-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10px;">#</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th style="width: 1px"></th>
-                                        <th style="width: 1px"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($users as $user)
+                                <div class="table-responsive no-padding">
+                                    <table class="table table-bordered">
+                                        <thead>
                                         <tr>
-                                            <td>{{ $user->id  }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.users.edit',['id' => $user->id]) }}" class="btn btn-primary btn-xs" role="button">
-                                                    <span class='glyphicon glyphicon-pencil'></span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form action="{{ route('admin.users.destroy', ['id' => $user->id]) }}" method="POST">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <button class="btn btn-primary btn-xs">
-                                                        <span class='glyphicon glyphicon-trash'></span>
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            <th style="width: 10px;">#</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th style="width: 1px"></th>
+                                            <th style="width: 1px"></th>
                                         </tr>
-                                    @endforeach
+                                        </thead>
+                                        <tbody>
+                                        @foreach($users as $user)
+                                            <tr>
+                                                <td>{{ $user->id  }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.users.edit',['id' => $user->id]) }}" class="btn btn-primary btn-xs" role="button">
+                                                        <span class='glyphicon glyphicon-pencil'></span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ route('admin.users.destroy', ['id' => $user->id]) }}" method="POST">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <button class="btn btn-primary btn-xs">
+                                                            <span class='glyphicon glyphicon-trash'></span>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
 
-                                    </tbody>
-                                </table>
-                                {{ $users->links() }}
+                                        </tbody>
+                                    </table>
+                                    {{ $users->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
